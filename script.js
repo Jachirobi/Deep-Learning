@@ -2,10 +2,10 @@
 window.addEventListener("load", () => {
 	const exampleImages = [
 		{ src: "images/n01498041_stingray.JPEG", korrekt: true },
-		{ src: "images/n01601694_water_ouzel.JPEG", korrekt: true },
-		{ src: "images/n02077923_sea_lion.JPEG", korrekt: true },
-		{ src: "images/n02085620_Chihuahua.JPEG", korrekt: false },
-		{ src: "images/n02088632_bluetick.JPEG", korrekt: false },
+		{ src: "images/n01601694_water_ouzel.jpeg", korrekt: true },
+		{ src: "images/n02077923_sea_lion.jpeg", korrekt: true },
+		{ src: "images/n02085620_Chihuahua.jpeg", korrekt: false },
+		{ src: "images/n02088632_bluetick.jpeg", korrekt: false },
 		{ src: "images/bird.jpg", korrekt: false }
 	];
 
