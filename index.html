@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meine erste Webseite</title>
+<link rel="stylesheet" href="style.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+<script src="https://unpkg.com/ml5@1/dist/ml5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+	<div class="container">
+		<header>
+			<div class="header-inhalt">
+				<h1>Deep Learning Bildklassifikation</h1>
+				<button id="darkModeToggle">🌙 Dark Mode aktivieren</button>
+			</div>
+		</header>
+
+		<div class="allgemeine-informationen">
+			<h2>Aufgabenstellung</h2>
+			<br>
+			<p>Erweitern Sie das ml5 Image Classification Tutorial so, dass
+				ein Nutzer beliebige Bilder klassifizieren kann. Sie verwenden dazu
+				wie im Tutorial ein bestehendes, vor-trainiertes Model. Sie müssen
+				also nichts selber trainieren/anlernen.</p>
+			<p>
+				<br> <strong>A1)</strong> Zeigen Sie Beispiel-Bilder, jeweils
+				drei für korrekte und falsche Klassifikation, zusammen mit den
+				Ergebnissen der Klassifikation als Diagramm (siehe Resultate und
+				Visualisierung). Machen Sie bei der Darstellung deutlich, welche
+				Bilder korrekt oder falsch klassifiziert werden. Die Bilder können
+				aus dem ImageNet Datensatz zum Image Classification Tutorial stammen
+				(siehe Daten) oder von Ihnen kommen. Sie können Bilder auch
+				künstlich modifizieren.
+			</p>
+			<br>
+			<p>
+				<strong>A2)</strong> Der Nutzer soll ein eigenes Bild in die
+				Anwendung laden und klassifizieren lassen können (siehe
+				Interaktion).
+			</p>
+			<br>
+			<p>
+				<strong>Interaktion:</strong> Der Nutzer kann ein Bild zur
+				Klassifikation hochladen oder per Drag-and-drop in die Anwendung
+				ziehen. Dieses wird zunächst dargestellt und dann automatisch oder
+				mittels eines Buttons "Classify" klassifiziert.
+			</p>
+		</div>
+
+		<aside class="linkeSeite">
+			<h2>Beispielbilder</h2>
+			<div id="beispielbilder" class="grid-container"></div>
+		</aside>
+
+		<aside class="rechteSeite">
+			<h2>Auswertung</h2>
+			<div id="tabellen" class="grid-container"></div>
+		</aside>
+
+		<div class="erklaerungEigenesBild">
+			<p>Im folgenden Abschnitt kann ein eigenes Bild eingefügt werden.
+				Sobald das Bild eingefügt wird, erfolgt die Klassifizierung:</p>
+			<br>
+			<ul>
+				<li>Bei einer Confidence &ge; 90 % wurde das Bild <strong>sehr
+						wahrscheinlich</strong> richtig klassifiziert und der Rahmen wird <span
+					style="color: green;">grün</span>.
+				</li>
+				<li>Bei einer Confidence &lt; 90 % und &ge; 50 % wurde das Bild
+					<strong>wahrscheinlich</strong> richtig klassifiziert und der
+					Rahmen wird <span style="color: orange;">gelb</span>.
+				</li>
+				<li>Bei einer Confidence &lt; 50 % ist <strong>unsicher</strong>,
+					ob das Bild richtig zugeordnet wurde und der Rahmen wird <span
+					style="color: red;">rot</span>.
+				</li>
+			</ul>
+			<br>
+			<p>Und jetzt versuche dich selbst :)</p>
+		</div>
+
+		<aside class="linkeSeiteE">
+			<h2>eigenes Bild</h2>
+			<div id="eigenesBild" class="grid-container"></div>
+		</aside>
+
+		<aside class="rechteSeiteE">
+			<h2>Auswertung</h2>
+			<div id="tabelle" class="grid-container"></div>
+		</aside>
+
+		<div class="diskussion">
+			<h2>Diskussion</h2>
+			<br>
+			<p>
+				Die Klassifikation mit dem vortrainierten MobileNet-Modell zeigte
+				insgesamt gute Ergebnisse bei klar erkennbaren Objekten wie dem <strong>Stingray</strong>
+				oder dem <strong>Sea Lion</strong>. Diese Bilder wurden mit hoher
+				Confidence korrekt klassifiziert. Schwierig wurde es bei Bildern mit
+				schlechter Qualität oder bei ungewöhnlichen Perspektiven (z. B. das
+				<strong>falsch klassifizierte Bird-Bild</strong>). In solchen Fällen
+				erkennt das Modell nicht die richtigen Merkmale, was zu einer
+				niedrigeren Confidence und falscher Zuordnung führt. Auffällig war,
+				dass das Modell besonders bei Bildern von Tieren in untypischen
+				Positionen oder mit ähnlicher Form (z. B. Hund vs. Seelöwe) unsicher
+				wurde. Die Confidence-Werte bieten eine gute Orientierung zur
+				Einordnung der Klassifikation. Der Farbrückkanal (grün/orange/rot)
+				unterstützte dabei visuell. Interessant war auch zu beobachten, dass
+				eine falsche Klassifikation nicht immer bedeutet, dass das Objekt
+				„nicht erkannt“ wurde – häufig wurde es einfach mit einem optisch
+				ähnlichen Objekt verwechselt. Insgesamt zeigt sich, dass das Modell
+				für einfache Aufgaben gut funktioniert, aber bei komplexeren Fällen
+				schnell an seine Grenzen stößt.
+			</p>
+		</div>
+
+		<div class="dokumentation">
+			<h2>Dokumentation</h2>
+			<br>
+			<h3>1) Technisch</h3>
+			<br>
+			<ul>
+				<li><strong>ml5.js:</strong> Für die Bildklassifikation mittels
+					eines vortrainierten MobileNet-Modells.</li>
+				<li><strong>p5.js:</strong> Wird automatisch von ml5.js
+					vorausgesetzt – Grundframework für kreative Webanwendungen.</li>
+				<li><strong>Chart.js:</strong> Zur Visualisierung der Top-3
+					Klassifikationsergebnisse in Form von Balkendiagrammen.</li>
+				<li><strong>HTML/CSS/JS:</strong> Für die gesamte
+					Weboberfläche, Benutzerinteraktion und visuelles Feedback.</li>
+			</ul>
+			<p>Besonderheiten: Die Anwendung ermöglicht Drag-and-Drop Upload,
+				automatisierte Klassifikation und visuelle Darstellung mit
+				Farbcodierung. Ein Dark Mode wurde ebenfalls integriert.</p>
+			<br>
+			<h3>2) Fachlich</h3>
+			<br>
+			<p>Die Kernlogik basiert auf dem Einsatz eines vortrainierten
+				Deep Learning Modells (MobileNet) über ml5.js. Der Nutzer kann
+				sowohl vorgegebene Beispielbilder analysieren als auch eigene
+				hochladen. Bei jedem Bild wird die Top-3-Klassifikation berechnet,
+				visualisiert und mit farblichem Feedback versehen (grün/orange/rot
+				je nach Confidence). Ziel war es, eine intuitiv verständliche
+				Oberfläche zu gestalten, die die Modellentscheidung nachvollziehbar
+				macht. Grundlage der Logik ist ein Schwellenwertsystem, das
+				Confidence-Werte in visuelle Rückmeldung übersetzt.</p>
+			<p>Quellen:</div>
+
+		<main></main>
+
+		<footer>Hier ist meine Statusleiste</footer>
+	</div>
+
+	<script src="script.js"></script>
+</body>
+</html>
