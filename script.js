@@ -1,12 +1,12 @@
 // Beispielbilder und Klassifikation mit ml5.js
 window.addEventListener("load", () => {
 	const exampleImages = [
-		{ src: "images/n01498041_stingray.JPEG", korrekt: true },
-		{ src: "images/n01601694_water_ouzel.jpeg", korrekt: true },
-		{ src: "images/n02077923_sea_lion.jpeg", korrekt: true },
-		{ src: "images/n02085620_Chihuahua.jpeg", korrekt: false },
-		{ src: "images/n02088632_bluetick.jpeg", korrekt: false },
-		{ src: "images/bird.jpg", korrekt: false }
+		{ src: "images/richtig1.jpeg", korrekt: true },
+		{ src: "images/richtig2.jpeg", korrekt: true },
+		{ src: "images/richtig3.png", korrekt: true },
+		{ src: "images/falsch1.jpg", korrekt: false },
+		{ src: "images/falsch2.jpg", korrekt: false },
+		{ src: "images/falsch3.jpg", korrekt: false }
 	];
 
 	const classifier = ml5.imageClassifier("MobileNet", () => {
