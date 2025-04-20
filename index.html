@@ -15,7 +15,9 @@
 		<header>
 			<div class="header-inhalt">
 				<h1>Deep Learning Bildklassifikation</h1>
-				<button id="darkModeToggle">🌙 Dark Mode aktivieren</button>
+				<button id="darkModeToggle" aria-pressed="false"
+					aria-label="Dark Mode umschalten">🌙 Dark Mode aktivieren
+				</button>
 			</div>
 		</header>
 
@@ -98,23 +100,33 @@
 			<br>
 			<p>
 				Die Klassifikation mit dem vortrainierten MobileNet-Modell zeigte
-				insgesamt gute Ergebnisse bei klar erkennbaren Objekten wie dem <strong>Stingray</strong>
-				oder dem <strong>Sea Lion</strong>. Diese Bilder wurden mit hoher
-				Confidence korrekt klassifiziert. Schwierig wurde es bei Bildern mit
-				schlechter Qualität oder bei ungewöhnlichen Perspektiven (z. B. das
-				<strong>falsch klassifizierte Bird-Bild</strong>). In solchen Fällen
-				erkennt das Modell nicht die richtigen Merkmale, was zu einer
-				niedrigeren Confidence und falscher Zuordnung führt. Auffällig war,
-				dass das Modell besonders bei Bildern von Tieren in untypischen
-				Positionen oder mit ähnlicher Form (z. B. Hund vs. Seelöwe) unsicher
-				wurde. Die Confidence-Werte bieten eine gute Orientierung zur
-				Einordnung der Klassifikation. Der Farbrückkanal (grün/orange/rot)
-				unterstützte dabei visuell. Interessant war auch zu beobachten, dass
-				eine falsche Klassifikation nicht immer bedeutet, dass das Objekt
-				„nicht erkannt“ wurde – häufig wurde es einfach mit einem optisch
-				ähnlichen Objekt verwechselt. Insgesamt zeigt sich, dass das Modell
-				für einfache Aufgaben gut funktioniert, aber bei komplexeren Fällen
-				schnell an seine Grenzen stößt.
+				insgesamt gute Ergebnisse bei klar erkennbaren Objekten wie dem <strong>water
+					ouzel</strong> , dem <strong>bluetick</strong> oder dem <strong>Sea
+					Lion</strong>. Diese Bilder wurden mit hoher Confidence korrekt
+				klassifiziert. Selbst beim Seelöwen, bei dem noch ein zusätzlicher
+				Text ins Bild integriert wurde, funktionierte die Klassifikation
+				problemlos. <br>
+				<br> Schwierig wurde es bei Bildern mit schlechter Qualität
+				oder bei ungewöhnlichen Perspektiven (z. B. das <strong>zweite
+					und dritte falsch klassifizierte Bild</strong>). In solchen Fällen erkennt
+				das Modell nicht die richtigen Merkmale, was zu einer niedrigeren
+				Confidence und falscher Zuordnung führt. Auffällig war, dass das
+				Modell besonders bei Bildern von Tieren in untypischen Positionen
+				oder mit ähnlicher Form unsicher wurde.<br> Bei weiteren Tests
+				ergaben sich Probleme bei der Zuordnung, wenn mehrere Objekte im
+				Bild vorhanden waren, oder wenn es sich um künstlerische
+				Darstellungen handelte. Sehr kleine Objekte im Vergleich zur
+				Bildgröße stellten ebenfalls ein Problem dar, genauso wie verdeckte
+				und nur teilweise sichtbare Objekte. <br>
+				<br> <strong>Zusammenfassung:</strong> <br>
+				<br> Die Confidence-Werte bieten eine gute Orientierung zur
+				Einordnung der Klassifikation. Die Farbeinordnung (grün/orange/rot)
+				soll dabei visuell unterstützen. Interessant war auch zu beobachten,
+				dass eine falsche Klassifikation nicht immer bedeutet, dass das
+				Objekt „nicht erkannt“ wurde – häufig wurde es einfach mit einem
+				optisch ähnlichen Objekt verwechselt. <br> Insgesamt zeigt
+				sich, dass das Modell für einfache Aufgaben gut funktioniert, aber
+				bei komplexeren Fällen schnell an seine Grenzen stößt.
 			</p>
 		</div>
 
@@ -133,9 +145,11 @@
 				<li><strong>HTML/CSS/JS:</strong> Für die gesamte
 					Weboberfläche, Benutzerinteraktion und visuelles Feedback.</li>
 			</ul>
+			<br>
 			<p>Besonderheiten: Die Anwendung ermöglicht Drag-and-Drop Upload,
 				automatisierte Klassifikation und visuelle Darstellung mit
-				Farbcodierung. Ein Dark Mode wurde ebenfalls integriert.</p>
+				Farbcodierung. Ein Dark Mode und die Nutzungsmöglichkeit auf
+				kleineren Displays (z.B. Handys) wurde ebenfalls integriert.</p>
 			<br>
 			<h3>2) Fachlich</h3>
 			<br>
@@ -148,11 +162,15 @@
 				Oberfläche zu gestalten, die die Modellentscheidung nachvollziehbar
 				macht. Grundlage der Logik ist ein Schwellenwertsystem, das
 				Confidence-Werte in visuelle Rückmeldung übersetzt.</p>
-			<p>Quellen:</div>
+			<p>Um den Nutzer Hilfestellungen zu geben, wurden an den
+				wichtigsten Stellen Tooltips integriert. Für die Barrierefreiheit 
+				wurde versucht alles zur berücksichtigen. Dazu gehören beispielsweise
+				 aria-label, alt-texte oder Kontraste bei der Farbauswahl.</p>
+		</div>
 
 		<main></main>
 
-		<footer>Hier ist meine Statusleiste</footer>
+		<footer>Ersteller: Thomas Brehmer</footer>
 	</div>
 
 	<script src="script.js"></script>

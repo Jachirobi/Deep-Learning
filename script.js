@@ -27,7 +27,7 @@ window.addEventListener("load", () => {
 
 		const img = document.createElement("img");
 		img.src = imgObj.src;
-		img.alt = "Beispielbild";
+		img.alt = imgObj.korrekt ? "Richtig klassifiziertes Bild" : "Falsch klassifiziertes Bild";
 
 		bildCard.appendChild(img);
 		const statusText = document.createElement("div");
@@ -141,6 +141,9 @@ window.addEventListener("load", () => {
 	const dropZone = document.createElement("div");
 	dropZone.className = "upload-ziel";
 	dropZone.title = "Ziehen Sie hier ein Bild zum Klassifizieren hinein.";
+	dropZone.setAttribute("role", "button");
+	dropZone.setAttribute("tabindex", "0");
+	dropZone.setAttribute("aria-label", "Bild zum Hochladen hier ablegen oder klicken");
 
 	const dropHint = document.createElement("div");
 	dropHint.textContent = "Bild hier hereinziehen";
@@ -159,7 +162,8 @@ window.addEventListener("load", () => {
 	fileInput.id = "uploadInput";
 
 	const fileLabel = document.createElement("label");
-	fileLabel.setAttribute("for", "uploadInput");
+//	fileLabel.setAttribute("for", "uploadInput");
+	fileLabel.setAttribute("aria-label", "Datei von Ihrem Gerät auswählen");
 	fileLabel.textContent = "📁 Datei aus Filesystem auswählen";
 	fileLabel.title = "Wählen Sie eine Bilddatei von Ihrem Computer aus.";
 
@@ -335,6 +339,7 @@ window.addEventListener("load", () => {
 
 	darkToggle.addEventListener("click", () => {
 		document.body.classList.toggle("dark");
+		darkToggle.setAttribute("aria-pressed", isDark ? "true" : "false");
 
 		if (document.body.classList.contains("dark")) {
 			darkToggle.textContent = "☀️ Light Mode aktivieren";
