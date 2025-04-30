@@ -8,13 +8,38 @@ window.addEventListener("load", () => {
 		{ src: "images/falsch2.jpg", korrekt: false },
 		{ src: "images/falsch3.jpg", korrekt: false }
 	];
+	
+	const overlay = document.getElementById("loadingOverlay");
+	const loadingText = document.getElementById("loadingText");
 
-	const classifier = ml5.imageClassifier("MobileNet", () => {
-		console.log("MobileNet Modell geladen.");
-		exampleImages.forEach((imgObj, index) => {
-			createAndClassifyImage(imgObj, index);
-		});
+	const classifier = ml5.imageClassifier("MobileNet", async () => {
+	  console.log("MobileNet Modell geladen.");
+	  loadingText.textContent = "📷 Lade Bilder...";
+
+	  // Warte bis alle Bilder vorgeladen sind
+	  await Promise.all(exampleImages.map(img => {
+	    return new Promise(resolve => {
+	      const preImg = new Image();
+	      preImg.src = img.src;
+	      preImg.onload = resolve;
+	      preImg.onerror = resolve; // Fehler ignorieren für Robustheit
+	    });
+	  }));
+
+	  loadingText.textContent = "⚙️ Klassifiziere Bilder...";
+
+	  for (let i = 0; i < exampleImages.length; i++) {
+	    await new Promise(resolve => {
+	      createAndClassifyImage(exampleImages[i], i);
+	      setTimeout(resolve, 300); // kleine Pause zwischen den Klassifikationen
+	    });
+	  }
+
+	  setTimeout(() => {
+	    overlay.style.display = "none";
+	  }, 500); // sanfte UX
 	});
+
 
 	function createAndClassifyImage(imgObj, index) {
 		const bildContainer = document.getElementById("beispielbilder");
@@ -162,7 +187,7 @@ window.addEventListener("load", () => {
 	fileInput.id = "uploadInput";
 
 	const fileLabel = document.createElement("label");
-//	fileLabel.setAttribute("for", "uploadInput");
+	fileLabel.setAttribute("for", "uploadInput");
 	fileLabel.setAttribute("aria-label", "Datei von Ihrem Gerät auswählen");
 	fileLabel.textContent = "📁 Datei aus Filesystem auswählen";
 	fileLabel.title = "Wählen Sie eine Bilddatei von Ihrem Computer aus.";
