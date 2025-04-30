@@ -363,14 +363,12 @@ window.addEventListener("load", () => {
 	const darkToggle = document.getElementById("darkModeToggle");
 
 	darkToggle.addEventListener("click", () => {
-		document.body.classList.toggle("dark");
+		const isDark = document.body.classList.toggle("dark"); // toggle gibt den neuen Zustand zurück
 		darkToggle.setAttribute("aria-pressed", isDark ? "true" : "false");
 
-		if (document.body.classList.contains("dark")) {
-			darkToggle.textContent = "☀️ Light Mode aktivieren";
-		} else {
-			darkToggle.textContent = "🌙 Dark Mode aktivieren";
-		}
+		darkToggle.textContent = isDark
+			? "☀️ Light Mode aktivieren"
+			: "🌙 Dark Mode aktivieren";
 	});
 
 
